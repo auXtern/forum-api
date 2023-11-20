@@ -6,7 +6,6 @@ const createServer = require('../createServer');
 const AuthenticationTokenManager = require('../../../Applications/security/AuthenticationTokenManager');
 
 describe('/authentications endpoint', () => {
-
   beforeAll(async () => {
     await AuthenticationsTableTestHelper.cleanTable();
     await UsersTableTestHelper.cleanTable();
@@ -20,7 +19,6 @@ describe('/authentications endpoint', () => {
   afterAll(async () => {
     await pool.end();
   });
-
 
   describe('when POST /authentications', () => {
     it('should response 201 and new authentication', async () => {
