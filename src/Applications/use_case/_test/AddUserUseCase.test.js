@@ -27,12 +27,9 @@ describe('AddUserUseCase', () => {
     const mockPasswordHash = new PasswordHash();
 
     /** mocking needed function */
-    mockUserRepository.verifyAvailableUsername = jest.fn()
-      .mockImplementation(() => Promise.resolve());
-    mockPasswordHash.hash = jest.fn()
-      .mockImplementation(() => Promise.resolve('encrypted_password'));
-    mockUserRepository.addUser = jest.fn()
-      .mockImplementation(() => Promise.resolve(mockRegisteredUser));
+    mockUserRepository.verifyAvailableUsername = jest.fn(() => Promise.resolve());
+    mockPasswordHash.hash = jest.fn(() => Promise.resolve('encrypted_password'));
+    mockUserRepository.addUser = jest.fn(() => Promise.resolve(mockRegisteredUser));
 
     /** creating use case instance */
     const getUserUseCase = new AddUserUseCase({
@@ -50,9 +47,9 @@ describe('AddUserUseCase', () => {
       fullname: useCasePayload.fullname,
     }));
 
-    expect(mockUserRepository.verifyAvailableUsername).toBeCalledWith(useCasePayload.username);
-    expect(mockPasswordHash.hash).toBeCalledWith(useCasePayload.password);
-    expect(mockUserRepository.addUser).toBeCalledWith(new RegisterUser({
+    expect(mockUserRepository.verifyAvailableUsername).toHaveBeenCalledWith(useCasePayload.username);
+    expect(mockPasswordHash.hash).toHaveBeenCalledWith(useCasePayload.password);
+    expect(mockUserRepository.addUser).toHaveBeenCalledWith(new RegisterUser({
       username: useCasePayload.username,
       password: 'encrypted_password',
       fullname: useCasePayload.fullname,
