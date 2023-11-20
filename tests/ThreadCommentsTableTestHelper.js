@@ -1,9 +1,10 @@
+/* eslint-disable camelcase */
 /* istanbul ignore file */
 const pool = require('../src/Infrastructures/database/postgres/pool');
 
 const ThreadCommentsTableTestHelper = {
   async addThreadComment({
-     owner = 'user-123', thread_id = 'thread-123', id = 'comment-123', content = 'sebuah comment', is_delete = false,
+    owner = 'user-123', thread_id = 'thread-123', id = 'comment-123', content = 'sebuah comment', is_delete = false,
   }) {
     const query = {
       text: 'INSERT INTO thread_comments (id, content, owner, thread_id, is_delete) VALUES($1, $2, $3, $4, $5)',
