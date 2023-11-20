@@ -6,3 +6,4 @@ config/database/test.json
 coverage
 .env
 local.env
+server.env

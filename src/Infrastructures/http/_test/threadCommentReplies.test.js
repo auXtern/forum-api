@@ -7,9 +7,11 @@ const ThreadCommentRepliesTableTestHelper = require('../../../../tests/ThreadCom
 const JwtTokenManager = require('../../security/JwtTokenManager');
 const container = require('../../container');
 const createServer = require('../createServer');
+const ThreadCommentLikesTableHelper = require('../../../../tests/ThreadCommentLikesTableHelper');
 
 describe('threadCommentReplies endpoint', () => {
   beforeAll(async () => {
+    await ThreadCommentLikesTableHelper.cleanTable();
     await ThreadCommentRepliesTableTestHelper.cleanTable();
     await ThreadCommentsTableTestHelper.cleanTable();
     await ThreadsTableTestHelper.cleanTable();
@@ -17,6 +19,7 @@ describe('threadCommentReplies endpoint', () => {
   });
 
   afterEach(async () => {
+    await ThreadCommentLikesTableHelper.cleanTable();
     await ThreadCommentRepliesTableTestHelper.cleanTable();
     await ThreadCommentsTableTestHelper.cleanTable();
     await ThreadsTableTestHelper.cleanTable();

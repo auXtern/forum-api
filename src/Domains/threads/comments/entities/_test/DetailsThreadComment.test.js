@@ -41,12 +41,14 @@ describe('a DetailsThreadComment entities', () => {
         username: 'johndoe',
         date: '2021-08-08T07:22:33.555Z',
         content: 'sebuah comment',
+        like_count: '0',
       },
       {
         id: 'comment-yksuCoxM2s4MMrZJO-qVD',
         username: 123,
         date: '2021-08-08T07:26:21.338Z',
         content: '**komentar telah dihapus**',
+        like_count: '1',
       },
     ];
 
@@ -74,6 +76,7 @@ describe('a DetailsThreadComment entities', () => {
         date: new Date(Date.parse('2021-08-08T07:22:33.555Z')),
         content: 'sebuah comment',
         is_delete: true,
+        like_count: '0',
       },
       {
         id: 'comment-yksuCoxM2s4MMrZJO-qVD',
@@ -81,6 +84,7 @@ describe('a DetailsThreadComment entities', () => {
         date: new Date(Date.parse('2021-08-08T07:26:21.338Z')),
         content: 'sebuah comment',
         is_delete: false,
+        like_count: '1',
       },
     ];
 
