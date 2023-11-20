@@ -34,6 +34,7 @@ describe('DetailThreadUseCase', () => {
         date: new Date(Date.parse('2021-08-08T07:22:33.555Z')),
         content: 'sebuah comment',
         is_delete: false,
+        like_count: '0',
       },
       {
         id: commentId2,
@@ -41,6 +42,7 @@ describe('DetailThreadUseCase', () => {
         date: new Date(Date.parse('2021-08-08T07:22:33.555Z')),
         content: 'sebuah comment',
         is_delete: true,
+        like_count: '1',
       },
     ]);
     const mockDetailsThreadCommentReply = new DetailsThreadCommentReply([
@@ -97,6 +99,7 @@ describe('DetailThreadUseCase', () => {
 
       expect(actualComment.id).toEqual(expectedComment.id);
       expect(actualComment.username).toEqual(expectedComment.username);
+      expect(actualComment.likeCount).toEqual(parseInt(expectedComment.likeCount, 10));
       expect(new Date(Date.parse(actualComment.date))).toEqual(expectedComment.date);
       if (actualComment.is_delete) {
         expect(actualComment.content).toEqual('**komentar telah dihapus**');

@@ -143,6 +143,12 @@ describe('ThreadRepositoryPostgres', () => {
         expect(actualComment.id).toEqual(expectedComment.id);
         expect(actualComment.username).toEqual(payloadUser.username);
         expect(actualComment.date instanceof Date).toBeTruthy();
+        if (actualComment.thread_id === threadId) {
+          expect(actualComment.likeCount).toEqual(payloadComments.length);
+        } else {
+          expect(actualComment.likeCount).toEqual(0);
+        }
+
         if (expectedComment.is_delete) {
           expect(actualComment.content).toEqual('**komentar telah dihapus**');
         } else {

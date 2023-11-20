@@ -20,6 +20,7 @@ describe('a DetailThreadComment entities', () => {
       username: 'dicoding',
       date: '2021-08-08T07:59:18.982Z',
       content: 'sebuah comment',
+      like_count: '1',
     };
 
     // Action and Assert
@@ -33,11 +34,12 @@ describe('a DetailThreadComment entities', () => {
       username: 'dicoding',
       date: new Date(Date.parse('2021-08-08T07:59:18.982Z')),
       content: 'sebuah comment',
+      like_count: '1',
     };
 
     // Action
     const {
-      id, username, date, content,
+      id, username, date, content, likeCount,
     } = new DetailThreadComment(payload);
 
     // Assert
@@ -45,5 +47,6 @@ describe('a DetailThreadComment entities', () => {
     expect(username).toEqual(payload.username);
     expect(date).toEqual(payload.date);
     expect(content).toEqual(payload.content);
+    expect(likeCount).toEqual(parseInt(payload.like_count, 10));
   });
 });

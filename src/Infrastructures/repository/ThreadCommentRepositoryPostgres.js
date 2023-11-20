@@ -28,8 +28,28 @@ class ThreadCommentRepositoryPostgres extends ThreadCommentRepository {
 
   async getThreadCommentsByThreadId(threadId) {
     const query = {
-      text: 'SELECT thread_comments.id, users.username, thread_comments.date, thread_comments.content, thread_comments.is_delete  FROM thread_comments INNER JOIN users ON thread_comments.owner = users.id WHERE thread_comments.thread_id = $1 ORDER BY thread_comments.date ASC',
-      values: [threadId],
+      text: `
+      SELECT
+        thread_comments.id,
+        users.username,
+        thread_comments.date,
+        thread_comments.content,
+        thread_comments.is_delete,
+        (
+          SELECT COUNT(*)
+          FROM thread_comment_likes
+          WHERE thread_comment_likes.comment_id = thread_comments.id AND is_liked = $1
+        ) AS like_count
+      FROM
+        thread_comments
+      INNER JOIN
+        users ON thread_comments.owner = users.id
+      WHERE
+        thread_comments.thread_id = $2
+      ORDER BY
+        thread_comments.date ASC
+    `,
+      values: [true, threadId],
     };
 
     const result = await this._pool.query(query);
